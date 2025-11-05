@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.finaoop.controllers.AdminLoginController"
+            stylesheets="@../styles/style.css"
+            prefWidth="1000" prefHeight="500">
+
+    <HBox prefWidth="1000" prefHeight="500">
+        <StackPane prefWidth="500" styleClass="green-panel">
+            <VBox alignment="CENTER" spacing="20">
+                <Label text="Admin Log-in" style="-fx-font-size:28px; -fx-text-fill: white;"/>
+                <VBox styleClass="card" spacing="10">
+                    <TextField fx:id="adminField" promptText="admin username"/>
+                    <PasswordField fx:id="passwordField" promptText="password"/>
+                    <Button text="Sign In" onAction="#onAdminSignIn"/>
+                    <Label fx:id="messageLabel" />
+                </VBox>
+
+                <HBox spacing="10">
+                    <Button text="Citizen Login" onAction="#onSwitchToCitizen" />
+                </HBox>
+            </VBox>
+        </StackPane>
+
+        <StackPane prefWidth="500" styleClass="light-panel"/>
+    </HBox>
+</AnchorPane>

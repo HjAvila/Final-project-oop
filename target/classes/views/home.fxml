@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.finaoop.controllers.HomeController"
+            stylesheets="@../styles/style.css"
+            prefWidth="1000" prefHeight="500">
+
+    <HBox prefWidth="1000" prefHeight="500">
+        <!-- sidebar include -->
+        <fx:include source="sidebar.fxml"/>
+
+        <!-- main content -->
+        <StackPane prefWidth="700" style="-fx-background-color: #f6fff6;">
+            <VBox alignment="TOP_CENTER" spacing="20">
+                <Label fx:id="welcomeLabel" text="Welcome, user!" style="-fx-font-size:22px; -fx-text-fill: #166a2b;"/>
+                <!-- Put dashboard widgets here -->
+                <Label text="Main dashboard area (put cards, charts, maps here)" wrapText="true"/>
+                <Button text="Logout" onAction="#onLogout"/>
+            </VBox>
+        </StackPane>
+    </HBox>
+</AnchorPane>
