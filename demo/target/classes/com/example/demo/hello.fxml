@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.HelloController" stylesheets="@style.css">
+    <HBox prefWidth="1920" prefHeight="1080">
+        <!-- Citizen Side -->
+        <VBox fx:id="citizenSide" alignment="CENTER" spacing="20" prefWidth="960" prefHeight="1080" styleClass="citizen-pane">
+            <Label text="Citizen Log-in" styleClass="login-title"/>
+            <Label text="Log in to monitor progress and manage your tasks." styleClass="login-subtitle"/>
+
+            <VBox styleClass="card" alignment="CENTER" spacing="10">
+                <TextField fx:id="citizenEmailField" promptText="you@example.com" styleClass="input-field"/>
+                <PasswordField fx:id="citizenPasswordField" promptText="••••••••" styleClass="input-field"/>
+                <Button text="Sign In" onAction="#onCitizenLoginClick" styleClass="sign-in-btn"/>
+            </VBox>
+
+            <Label text="Don't have an account? Contact your local admin to register." styleClass="helper-text"/>
+        </VBox>
+
+        <!-- Admin Side -->
+        <VBox fx:id="adminSide" alignment="CENTER" spacing="20" prefWidth="960" prefHeight="1080" styleClass="admin-pane">
+            <Label text="Admin Log-in" styleClass="login-title"/>
+            <Label text="Access the system dashboard and manage records." styleClass="login-subtitle"/>
+
+            <VBox styleClass="card-dark" alignment="CENTER" spacing="10">
+                <TextField fx:id="adminEmailField" promptText="you@admin.com" styleClass="input-field-dark"/>
+                <PasswordField fx:id="adminPasswordField" promptText="••••••••" styleClass="input-field-dark"/>
+                <Button text="Sign In" onAction="#onAdminLoginClick" styleClass="sign-in-btn-dark"/>
+            </VBox>
+
+            <Label text="For technical support, please contact IT Department." styleClass="helper-text-dark"/>
+        </VBox>
+    </HBox>
+</AnchorPane>
