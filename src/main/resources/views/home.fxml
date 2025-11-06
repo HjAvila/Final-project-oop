@@ -1,25 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane fx:id="mainLayout"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.finaoop.controllers.HomeController"
-            stylesheets="@../styles/style.css"
-            prefWidth="1000" prefHeight="500">
+            prefWidth="1000" prefHeight="600"
+            stylesheets="@../styles/style.css">
 
-    <HBox prefWidth="1000" prefHeight="500">
-        <!-- sidebar include -->
-        <fx:include source="sidebar.fxml"/>
+    <!-- 🔹 SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar" spacing="12" alignment="TOP_LEFT" styleClass="sidebar">
+            <padding>
+                <Insets top="20" left="15" right="15" bottom="20"/>
+            </padding>
 
-        <!-- main content -->
-        <StackPane prefWidth="700" style="-fx-background-color: #f6fff6;">
-            <VBox alignment="TOP_CENTER" spacing="20">
-                <Label fx:id="welcomeLabel" text="Welcome, user!" style="-fx-font-size:22px; -fx-text-fill: #166a2b;"/>
-                <!-- Put dashboard widgets here -->
-                <Label text="Main dashboard area (put cards, charts, maps here)" wrapText="true"/>
-                <Button text="Logout" onAction="#onLogout"/>
+            <Label text="EcoTrack" styleClass="sidebar-title"/>
+            <Label text="Citizen Panel" styleClass="sidebar-subtitle"/>
+
+            <Button text="Dashboard" styleClass="sidebar-btn" onAction="#goToDashboard"/>
+            <Button text="Disposal Request" styleClass="sidebar-btn" onAction="#goToDisposalRequest"/>
+            <Separator/>
+            <Button text="Logout" styleClass="sidebar-btn" onAction="#onLogout"/>
+        </VBox>
+    </left>
+
+    <!-- 🔹 MAIN CONTENT AREA -->
+    <center>
+        <AnchorPane fx:id="dashboardContainer" styleClass="light-panel">
+            <VBox spacing="20" alignment="TOP_LEFT" layoutX="40" layoutY="40">
+
+                <Label fx:id="welcomeLabel" text="Welcome, User!" styleClass="dashboard-title"/>
+
+                <!-- Dashboard Stats Cards -->
+                <HBox spacing="20">
+                    <VBox styleClass="stat-card">
+                        <Label text="Total Requests" styleClass="card-header"/>
+                        <Label text="123" styleClass="card-number"/>
+                        <Label text="+10% this week" styleClass="card-note"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card">
+                        <Label text="Pending" styleClass="card-header"/>
+                        <Label text="8" styleClass="card-number"/>
+                        <Label text="Awaiting approval" styleClass="card-note"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card">
+                        <Label text="Approved" styleClass="card-header"/>
+                        <Label text="115" styleClass="card-number"/>
+                        <Label text="Up to date" styleClass="card-note"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Info Cards -->
+                <HBox spacing="20">
+                    <VBox styleClass="info-card" prefWidth="250">
+                        <Label text="System Updates" styleClass="info-title"/>
+                        <Label text="New disposal guidelines have been released for 2025." styleClass="info-text"/>
+                        <Label text="Read more on the official site." styleClass="alert-text"/>
+                    </VBox>
+
+                    <VBox styleClass="info-card" prefWidth="250">
+                        <Label text="Collection Schedule" styleClass="info-title"/>
+                        <Label text="Next pickup: Thursday, 9:00 AM" styleClass="info-text"/>
+                        <Label text="Status: " styleClass="info-text"/>
+                        <Label text="LIVE" styleClass="live-label"/>
+                    </VBox>
+
+                    <VBox styleClass="info-card" prefWidth="250">
+                        <Label text="Quick Action" styleClass="info-title"/>
+                        <Button text="Generate Report" styleClass="generate-btn"/>
+                    </VBox>
+                </HBox>
             </VBox>
-        </StackPane>
-    </HBox>
-</AnchorPane>
+        </AnchorPane>
+    </center>
+
+</BorderPane>
