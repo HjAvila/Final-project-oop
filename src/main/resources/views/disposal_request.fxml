@@ -1,78 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DisposalRequestController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DisposalRequestController"
+            stylesheets="@../styles/style.css">
 
-    <!-- Sidebar -->
     <left>
-        <VBox spacing="10" prefWidth="220" style="-fx-background-color: #2C3E50; -fx-padding: 15;">
-            <Label text="EcoWaste System" style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" />
-            <Separator />
-
-            <Button text="🏠 Home" styleClass="sidebar-button" onAction="#goToHome"/>
-            <Button text="📦 Disposal Requests" styleClass="sidebar-button" onAction="#goToDisposalView"/>
-            <Button text="📝 Request Form" styleClass="sidebar-button" onAction="#goToDisposalRequest"/>
-            <Button text="🚪 Logout" styleClass="sidebar-button" onAction="#onLogout"/>
+        <VBox spacing="10" prefWidth="220" style="-fx-background-color: #F3FDF6;">
+            <VBox alignment="CENTER_LEFT" spacing="5" padding="20">
+                <Label text="Waste Disposal Assistant" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label text="Clean. Organized. Green." style="-fx-text-fill: gray;"/>
+            </VBox>
+            <Separator/>
+            <VBox spacing="8" padding="10">
+                <Button text="Home" onAction="#goHome" styleClass="sidebar-btn"/>
+                <Button text="Disposal Request" styleClass="sidebar-btn"/>
+                <Button text="Reports" onAction="#goHome" styleClass="sidebar-btn"/>
+                <Button text="Logout" onAction="#onLogout" styleClass="sidebar-btn"/>
+            </VBox>
         </VBox>
     </left>
 
-    <!-- Main Content -->
     <center>
-        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;">
-            <Label text="Submit a Disposal Request"
-                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" />
+        <VBox alignment="TOP_LEFT" spacing="20" padding="40">
+            <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Provide the details below to initiate a waste disposal request." style="-fx-font-size:13px; -fx-text-fill:#333;"/>
 
             <GridPane hgap="15" vgap="15">
                 <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT" minWidth="120" />
-                    <ColumnConstraints halignment="LEFT" minWidth="250" />
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
                 </columnConstraints>
 
-                <Label text="Full Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <TextField fx:id="nameField" promptText="Enter your name"
-                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Label text="Location:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="locationField" promptText="Enter site address" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
 
-                <Label text="Address:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <TextField fx:id="addressField" promptText="Enter your address"
-                           GridPane.rowIndex="1" GridPane.columnIndex="1" />
-
-                <Label text="Waste Type:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                <ComboBox fx:id="wasteTypeBox" promptText="Select type"
-                          GridPane.rowIndex="2" GridPane.columnIndex="1">
+                <Label text="Waste Type:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="wasteTypeBox" GridPane.rowIndex="1" GridPane.columnIndex="1">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Plastic" />
-                            <String fx:value="Metal" />
-                            <String fx:value="Electronic" />
-                            <String fx:value="Organic" />
-                            <String fx:value="Other" />
+                            <String fx:value="Household"/>
+                            <String fx:value="Plastic"/>
+                            <String fx:value="Metal"/>
+                            <String fx:value="Electronic"/>
+                            <String fx:value="Organic"/>
+                            <String fx:value="Other"/>
                         </FXCollections>
                     </items>
                 </ComboBox>
-
-                <Label text="Quantity (kg):" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-                <TextField fx:id="quantityField" promptText="Enter weight in kilograms"
-                           GridPane.rowIndex="3" GridPane.columnIndex="1" />
-
-                <Label text="Pickup Date:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-                <DatePicker fx:id="pickupDatePicker" GridPane.rowIndex="4" GridPane.columnIndex="1" />
-
-                <Label text="Notes:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-                <TextArea fx:id="notesArea" promptText="Additional details"
-                          prefRowCount="3" GridPane.rowIndex="5" GridPane.columnIndex="1" />
             </GridPane>
 
-            <Button text="Submit Request"
-                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;"
-                    onAction="#handleSubmitRequest" />
+            <Label text="Description:"/>
+            <TextArea fx:id="descriptionArea" prefRowCount="6" promptText="Provide context and any additional instructions."/>
 
-            <Label fx:id="statusLabel"
-                   style="-fx-text-fill: #2C3E50; -fx-font-size: 13;" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Upload Photo:"/>
+                <Button text="Upload" onAction="#uploadPhoto"/>
+            </HBox>
+
+            <Button text="Submit Request" onAction="#submitRequest" style="-fx-background-color:#2ecc71;-fx-text-fill:white;-fx-font-weight:bold;-fx-padding:10 20; -fx-background-radius:10;"/>
+            <Label fx:id="statusLabel"/>
         </VBox>
     </center>
 </BorderPane>

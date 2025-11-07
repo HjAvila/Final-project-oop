@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DashboardController"
+            prefWidth="1000" prefHeight="600"
+            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
+
+    <VBox spacing="20" alignment="TOP_LEFT" padding="30">
+        <!-- Header -->
+        <VBox spacing="5">
+            <Label text="Dashboard Overview" style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+            <Label text="Track city performance and disposal operations at a glance."
+                   style="-fx-text-fill: #555555; -fx-font-size: 14px;"/>
+        </VBox>
+
+        <!-- Summary Section -->
+        <HBox spacing="20">
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="100"
+                  style="-fx-background-color: #c8facc; -fx-background-radius: 12; -fx-padding: 15;">
+                <Label text="NUMBER OF REPORTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label text="128" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="↑ 12% vs last month" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="100"
+                  style="-fx-background-color: #d9fcd9; -fx-background-radius: 12; -fx-padding: 15;">
+                <Label text="ACTIVE REQUESTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label text="34" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="↑ 5 pending" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="100"
+                  style="-fx-background-color: #b7f5b7; -fx-background-radius: 12; -fx-padding: 15;">
+                <Label text="COMPLETED TASKS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label text="412" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="↑ 21 this week" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Lower Section -->
+        <HBox spacing="20">
+            <!-- Latest Activities -->
+            <VBox prefWidth="250" spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, #00000022, 4, 0.1, 0, 2);">
+                <Label text="Latest Activities" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label text="Disposal Request #954 assigned to Team East"
+                       style="-fx-text-fill: #2e7d32; -fx-font-size: 13px;"/>
+                <Label text="Community recycling drive scheduled for Oct 18"
+                       style="-fx-text-fill: #444; -fx-font-size: 13px;"/>
+                <Label text="Air quality sensors updated across 4 districts"
+                       style="-fx-text-fill: #444; -fx-font-size: 13px;"/>
+            </VBox>
+
+            <!-- Priority Alerts -->
+            <VBox prefWidth="250" spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, #00000022, 4, 0.1, 0, 2);">
+                <Label text="Priority Alerts" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label text="Overflow reported at Riverfront Avenue"
+                       style="-fx-background-color: #ffebee; -fx-padding: 5 10; -fx-background-radius: 8;"/>
+                <Label text="Equipment maintenance due in North Hub"
+                       style="-fx-background-color: #fff9c4; -fx-padding: 5 10; -fx-background-radius: 8;"/>
+                <Label text="New recycling program launched"
+                       style="-fx-background-color: #e8f5e9; -fx-padding: 5 10; -fx-background-radius: 8;"/>
+            </VBox>
+
+            <!-- City Map -->
+            <VBox prefWidth="250" spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, #00000022, 4, 0.1, 0, 2);">
+                <Label text="City Map Preview" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <ImageView fitWidth="210" fitHeight="120" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/map_preview.jpg"/>
+                    </image>
+                </ImageView>
+                <Label text="Live" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px; -fx-font-style: italic;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

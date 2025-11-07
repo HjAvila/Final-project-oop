@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.finaoop.controllers.AdminLoginController"
-            stylesheets="@../styles/style.css"
-            prefWidth="1000" prefHeight="500">
-
-    <HBox prefWidth="1000" prefHeight="500">
-        <StackPane prefWidth="500" styleClass="green-panel">
-            <VBox alignment="CENTER" spacing="20">
-                <Label text="Admin Log-in" style="-fx-font-size:28px; -fx-text-fill: white;"/>
-                <VBox styleClass="card" spacing="10">
-                    <TextField fx:id="adminField" promptText="admin username"/>
-                    <PasswordField fx:id="passwordField" promptText="password"/>
-                    <Button text="Sign In" onAction="#onAdminSignIn"/>
-                    <Label fx:id="messageLabel" />
-                </VBox>
-
-                <HBox spacing="10">
-                    <Button text="Citizen Login" onAction="#onSwitchToCitizen" />
-                </HBox>
-            </VBox>
-        </StackPane>
-
-        <StackPane prefWidth="500" styleClass="light-panel"/>
-    </HBox>
-</AnchorPane>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.AdminLoginController"
+           stylesheets="@../styles/style.css">
+    <VBox alignment="CENTER">
+        <Pane minHeight="50"/>
+        <VBox styleClass="center-card" spacing="10" alignment="CENTER">
+            <Label text="Admin Login" styleClass="card-title"/>
+            <TextField fx:id="adminField" promptText="admin" styleClass="input"/>
+            <PasswordField fx:id="passwordField" promptText="1234" styleClass="input"/>
+            <Label fx:id="messageLabel" styleClass="muted"/>
+            <HBox spacing="10">
+                <Button text="Sign In" onAction="#onAdminSignIn" styleClass="primary-btn"/>
+                <Button text="Back" onAction="#backToLogin" styleClass="secondary-btn"/>
+            </HBox>
+        </VBox>
+        <Pane minHeight="60"/>
+    </VBox>
+</StackPane>

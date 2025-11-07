@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.finaoop.controllers.SignupController"
-            stylesheets="@../styles/style.css"
-            prefWidth="1000" prefHeight="500">
-
-    <HBox prefWidth="1000" prefHeight="500">
-        <StackPane prefWidth="700" style="-fx-background-color: white;">
-            <VBox spacing="10" layoutX="40" layoutY="30">
-                <Label text="Create an account" style="-fx-font-size:24px;" />
-                <Label text="Join the platform to submit requests and track city-wide recycling progress." wrapText="true"/>
-                <VBox styleClass="form-card" spacing="8" prefWidth="500">
-                    <TextField fx:id="fullNameField" promptText="Full Name"/>
-                    <TextField fx:id="emailField" promptText="Email"/>
-                    <PasswordField fx:id="passwordField" promptText="Password"/>
-                    <PasswordField fx:id="confirmField" promptText="Confirm Password"/>
-                    <Label fx:id="messageLabel"/>
-                    <HBox spacing="10">
-                        <Button text="Sign Up" onAction="#onCreateAccount"/>
-                        <Button text="Back to Login" onAction="#onBackToLogin"/>
-                    </HBox>
-                </VBox>
-            </VBox>
-        </StackPane>
-
-        <StackPane prefWidth="300" styleClass="side-info">
-            <VBox alignment="TOP_CENTER" spacing="12">
-                <Label text="Why join?" style="-fx-font-size:16px;"/>
-                <Label text="• Submit and monitor disposal requests\n• Receive real-time updates\n• Support green projects" wrapText="true"/>
-            </VBox>
-        </StackPane>
-    </HBox>
-</AnchorPane>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.SignupController"
+           stylesheets="@../styles/style.css">
+    <VBox alignment="CENTER">
+        <Pane minHeight="60"/>
+        <VBox styleClass="center-card" spacing="10" alignment="CENTER">
+            <Label text="Create Account" styleClass="card-title"/>
+            <TextField fx:id="fullNameField" promptText="Full name" styleClass="input"/>
+            <TextField fx:id="emailField" promptText="Email" styleClass="input"/>
+            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input"/>
+            <PasswordField fx:id="confirmField" promptText="Confirm password" styleClass="input"/>
+            <Label fx:id="msgLabel" styleClass="muted"/>
+            <HBox spacing="10">
+                <Button text="Create" onAction="#onCreateAccount" styleClass="primary-btn"/>
+                <Button text="Back" onAction="#backToLogin" styleClass="secondary-btn"/>
+            </HBox>
+        </VBox>
+        <Pane minHeight="60"/>
+    </VBox>
+</StackPane>
