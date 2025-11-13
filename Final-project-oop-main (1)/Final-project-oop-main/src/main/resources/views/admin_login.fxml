@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.AdminLoginController"
+           stylesheets="@../styles/style.css">
+    <VBox alignment="CENTER">
+        <Pane minHeight="50"/>
+        <VBox styleClass="center-card" spacing="10" alignment="CENTER">
+            <Label text="Admin Login" styleClass="card-title"/>
+            <TextField fx:id="adminField" promptText="admin" styleClass="input"/>
+            <PasswordField fx:id="passwordField" promptText="1234" styleClass="input"/>
+            <Label fx:id="messageLabel" styleClass="muted"/>
+            <HBox spacing="10">
+                <Button text="Sign In" onAction="#onAdminSignIn" styleClass="primary-btn"/>
+                <Button text="Back" onAction="#backToLogin" styleClass="secondary-btn"/>
+            </HBox>
+        </VBox>
+        <Pane minHeight="60"/>
+    </VBox>
+</StackPane>

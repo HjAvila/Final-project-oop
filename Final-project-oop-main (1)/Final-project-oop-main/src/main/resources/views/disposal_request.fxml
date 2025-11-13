@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DisposalRequestController"
+            stylesheets="@/styles/style.css">
+
+    <left>
+        <VBox spacing="10" prefWidth="220" styleClass="sidebar">
+            <VBox alignment="CENTER_LEFT" spacing="5" padding="20">
+                <Label text="Waste Disposal Assistant" styleClass="brand"/>
+                <Label text="Clean. Organized. Green." styleClass="muted"/>
+            </VBox>
+            <Separator/>
+            <VBox spacing="8" padding="10">
+                <Button text="Home" onAction="#goHome" styleClass="sidebar-btn"/>
+                <Button text="Disposal Request" styleClass="sidebar-btn"/>
+                <Button text="Reports" onAction="#openReports" styleClass="sidebar-btn"/>
+                <Button text="Logout" onAction="#onLogout" styleClass="sidebar-btn"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_LEFT" spacing="20" style="-fx-padding:40;">
+            <Label text="Disposal Request Form" styleClass="page-title"/>
+            <Label text="Provide the details below to initiate a waste disposal request." styleClass="muted"/>
+
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+
+                <Label text="Location:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="locationField" promptText="Enter site address" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+                <Label text="Waste Type:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="wasteTypeBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Label text="Description:"/>
+            <TextArea fx:id="descriptionArea" prefRowCount="6" promptText="Provide context and any additional instructions."/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Upload Photo:"/>
+                <Button text="Upload" onAction="#uploadPhoto" styleClass="secondary-btn"/>
+            </HBox>
+
+            <Button text="Submit Request" onAction="#submitRequest" styleClass="primary-btn"/>
+            <Label fx:id="statusLabel"/>
+        </VBox>
+    </center>
+</BorderPane>

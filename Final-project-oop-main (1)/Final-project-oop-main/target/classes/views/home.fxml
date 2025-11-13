@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.HomeController"
+            stylesheets="@../styles/style.css">
+
+
+    <left>
+        <VBox spacing="12" styleClass="sidebar" prefWidth="260">
+            <padding>
+                <Insets top="20" left="20" right="20" bottom="20"/>
+            </padding>
+            <Label text="Waste Disposal Assistant" styleClass="brand"/>
+            <Label fx:id="welcomeLabel" text="Welcome!" styleClass="muted"/>
+            <Button text="Dashboard" onAction="#goToDashboard" styleClass="sidebar-btn"/>
+            <Button text="Disposal Request" onAction="#goToDisposalRequest" styleClass="sidebar-btn"/>
+            <Button text="Reports" onAction="#openReports" styleClass="sidebar-btn"/>
+            <Button text="Profile" onAction="#goToProfile" styleClass="sidebar-btn"/>
+            <Button text="Logout" onAction="#onLogout" styleClass="sidebar-btn"/>
+        </VBox>
+    </left>
+
+
+    <center>
+        <VBox alignment="TOP_LEFT" spacing="16" style="-fx-padding:28;">
+            <Label text="Dashboard Overview" styleClass="page-title"/>
+            <HBox spacing="18">
+                <VBox styleClass="stat-card">
+                    <Label text="TOTAL" styleClass="card-header"/>
+                    <Label text="0" fx:id="numReports" styleClass="card-number"/>
+                </VBox>
+                <VBox styleClass="stat-card">
+                    <Label text="ACTIVE" styleClass="card-header"/>
+                    <Label text="0" fx:id="numActive" styleClass="card-number"/>
+                </VBox>
+                <VBox styleClass="stat-card">
+                    <Label text="COMPLETED" styleClass="card-header"/>
+                    <Label text="0" fx:id="numCompleted" styleClass="card-number"/>
+                </VBox>
+            </HBox>
+            <Label text="Welcome to the Waste Disposal Assistant. Use the sidebar to submit requests and view reports."
+                   wrapText="true" styleClass="muted"/>
+        </VBox>
+    </center>
+</BorderPane>

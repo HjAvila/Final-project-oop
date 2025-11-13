@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DisposalRequestController">
+    <VBox layoutX="30" layoutY="20" spacing="12" prefWidth="760" style="-fx-padding:20;">
+        <Label text="Disposal Request Form" styleClass="page-title"/>
+        <Label text="Fill the form and submit. Upload is local selection only." styleClass="muted"/>
+        <GridPane hgap="14" vgap="12">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="35"/>
+                <ColumnConstraints percentWidth="65"/>
+            </columnConstraints>
+            <Label text="Location:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="locationField" promptText="Enter site address" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Waste Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="wasteTypeBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Description:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextArea fx:id="descriptionArea" prefRowCount="5" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="12">
+            <Button text="Upload Photo" onAction="#uploadPhoto" styleClass="secondary-btn"/>
+            <Button text="Submit Request" onAction="#submitRequest" styleClass="primary-btn"/>
+            <Label fx:id="statusLabel" styleClass="muted"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

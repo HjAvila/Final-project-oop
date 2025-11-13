@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.ReportsController"
+            stylesheets="@../styles/style.css">
+
+    <center>
+        <VBox spacing="12" padding="20">
+            <Label text="Reports" style="-fx-font-size:22; -fx-font-weight:bold;"/>
+            <TableView fx:id="table" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colId" text="Request ID" prefWidth="120"/>
+                    <TableColumn fx:id="colLocation" text="Location" prefWidth="260"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="140"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="colDate" text="Date" prefWidth="140"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
