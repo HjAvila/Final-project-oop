@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.ReportsController"
-            stylesheets="@../styles/style.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.ReportsController"
+            stylesheets="@../styles/style.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0fdf4, #ffffff);">
 
     <center>
-        <VBox spacing="12" padding="20">
-            <Label text="Reports" style="-fx-font-size:22; -fx-font-weight:bold;"/>
-            <TableView fx:id="table" prefHeight="400">
+        <VBox spacing="20" padding="25">
+
+            <!-- Page Title -->
+            <Label text="Reports"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;"/>
+
+            <!-- Reports Table -->
+            <TableView fx:id="table" prefHeight="450"
+                       style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #d9d9d9; -fx-border-width: 1;">
                 <columns>
                     <TableColumn fx:id="colId" text="Request ID" prefWidth="120"/>
                     <TableColumn fx:id="colLocation" text="Location" prefWidth="260"/>

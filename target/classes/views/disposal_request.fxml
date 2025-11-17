@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.DisposalRequestController"
-            stylesheets="@../styles/style.css">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.DisposalRequestController"
+            stylesheets="@../styles/style.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
 
-    <left>
-        <VBox spacing="10" prefWidth="220" style="-fx-background-color: #F3FDF6;">
-            <VBox alignment="CENTER_LEFT" spacing="5" padding="20">
-                <Label text="Waste Disposal Assistant" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                <Label text="Clean. Organized. Green." style="-fx-text-fill: gray;"/>
+    <ScrollPane fitToWidth="true" fitToHeight="true">
+        <VBox spacing="25" padding="30">
+
+            <!-- Title Section -->
+            <VBox spacing="6">
+                <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Label text="Fill the form and submit. Upload is local selection only."
+                       style="-fx-text-fill: #555555; -fx-font-size: 13px;"/>
             </VBox>
-            <Separator/>
-            <VBox spacing="8" padding="10">
-                <Button text="Home" onAction="#goHome" styleClass="sidebar-btn"/>
-                <Button text="Disposal Request" styleClass="sidebar-btn"/>
-                <Button text="Reports" onAction="#goHome" styleClass="sidebar-btn"/>
-                <Button text="Logout" onAction="#onLogout" styleClass="sidebar-btn"/>
-            </VBox>
-        </VBox>
-    </left>
 
-    <center>
-        <VBox alignment="TOP_LEFT" spacing="20" padding="40">
-            <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-            <Label text="Provide the details below to initiate a waste disposal request." style="-fx-font-size:13px; -fx-text-fill:#333;"/>
-
-            <GridPane hgap="15" vgap="15">
+            <!-- Form Grid -->
+            <GridPane hgap="20" vgap="20">
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="50"/>
-                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="35"/>
+                    <ColumnConstraints percentWidth="65"/>
                 </columnConstraints>
 
                 <Label text="Location:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="locationField" promptText="Enter site address" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="locationField" promptText="Enter site address"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input"/>
 
-                <Label text="Waste Type:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                <ComboBox fx:id="wasteTypeBox" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Household"/>
-                            <String fx:value="Plastic"/>
-                            <String fx:value="Metal"/>
-                            <String fx:value="Electronic"/>
-                            <String fx:value="Organic"/>
-                            <String fx:value="Other"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
+                <Label text="Waste Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="wasteTypeBox" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                          promptText="Select waste type" styleClass="input"/>
+
+                <Label text="Description:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextArea fx:id="descriptionArea" prefRowCount="6"
+                          GridPane.rowIndex="2" GridPane.columnIndex="1"
+                          promptText="Provide context and any additional instructions."
+                          styleClass="input"/>
             </GridPane>
 
-            <Label text="Description:"/>
-            <TextArea fx:id="descriptionArea" prefRowCount="6" promptText="Provide context and any additional instructions."/>
-
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Upload Photo:"/>
-                <Button text="Upload" onAction="#uploadPhoto"/>
+            <!-- Action Buttons -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Button text="Upload Photo" onAction="#uploadPhoto" styleClass="secondary-btn"/>
+                <Button text="Submit Request" onAction="#submitRequest" styleClass="primary-btn"/>
+                <Label fx:id="statusLabel" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;"/>
             </HBox>
 
-            <Button text="Submit Request" onAction="#submitRequest" style="-fx-background-color:#2ecc71;-fx-text-fill:white;-fx-font-weight:bold;-fx-padding:10 20; -fx-background-radius:10;"/>
-            <Label fx:id="statusLabel"/>
+            <!-- Latest Requests Table -->
+            <TableView fx:id="latestRequestsTable" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="locationCol" text="Location" prefWidth="200"/>
+                    <TableColumn fx:id="typeCol" text="Type" prefWidth="150"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="150"/>
+                </columns>
+            </TableView>
+
         </VBox>
-    </center>
-</BorderPane>
+    </ScrollPane>
+</AnchorPane>

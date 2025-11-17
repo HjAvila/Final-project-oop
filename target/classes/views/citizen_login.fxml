@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.finaoop.controllers.CitizenLoginController"
-           stylesheets="@../styles/style.css">
-    <!-- Gradient background handled in CSS; centered card below -->
-    <VBox alignment="CENTER">
-        <Pane minHeight="80"/> <!-- spacing top -->
-        <VBox fx:id="card" spacing="12" alignment="CENTER" styleClass="center-card">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.finaoop.controllers.CitizenLoginController"
+           stylesheets="@../styles/style.css"
+           prefWidth="1000" prefHeight="700">
+
+    <VBox alignment="CENTER" spacing="20">
+        <!-- Top spacer -->
+        <Pane minHeight="60"/>
+
+        <!-- Center Card -->
+        <VBox fx:id="card" styleClass="center-card" spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
             <Label text="Citizen Login" styleClass="card-title"/>
-            <TextField fx:id="emailField" promptText="Email" styleClass="input"/>
-            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input"/>
+
+            <TextField fx:id="emailField" promptText="Email" styleClass="input" maxWidth="300"/>
+            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input" maxWidth="300"/>
+
             <Label fx:id="messageLabel" styleClass="muted"/>
-            <HBox spacing="10" alignment="CENTER">
+
+            <HBox spacing="15" alignment="CENTER">
                 <Button text="Sign In" onAction="#onSignIn" styleClass="primary-btn"/>
                 <Button text="Admin Login" onAction="#goToAdminLogin" styleClass="secondary-btn"/>
             </HBox>
+
             <Button text="Sign Up" onAction="#goToSignup" styleClass="link-btn"/>
         </VBox>
-        <Pane minHeight="80"/>
+
+        <!-- Bottom spacer -->
+        <Pane minHeight="60"/>
     </VBox>
 </StackPane>

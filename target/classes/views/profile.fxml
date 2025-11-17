@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.ProfileController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0fdf4, #ffffff);">
+
+    <StackPane layoutX="100" layoutY="50" prefWidth="600" prefHeight="500">
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #ffffff; -fx-background-radius: 20; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 3);">
+
+            <!-- Profile Picture -->
+            <StackPane alignment="CENTER">
+                <Circle fx:id="profileCircle" radius="70" fill="#cce5ff" stroke="#4a90e2" strokeWidth="3"/>
+                <ImageView fx:id="profileImage" fitWidth="140" fitHeight="140" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/sample-profile.png"/>
+                    </image>
+                    <clip>
+                        <Circle radius="70"/>
+                    </clip>
+                </ImageView>
+            </StackPane>
+
+            <!-- Name and Badge -->
+            <HBox alignment="CENTER" spacing="10">
+                <Label fx:id="nameLabel" text="Alex Johnson" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;"/>
+                <Label text="Premium" style="-fx-background-color: #ffd700; -fx-padding: 2 8 2 8; -fx-background-radius: 12; -fx-text-fill: #fff; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+            </HBox>
+
+            <!-- User Info -->
+            <VBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding: 0 40 0 40;">
+                <Label fx:id="emailLabel" text="alex.johnson@gmail.com" style="-fx-font-size: 14px; -fx-text-fill: #555555;"/>
+                <Label fx:id="phoneLabel" text="+63 912 345 6789" style="-fx-font-size: 14px; -fx-text-fill: #555555;"/>
+                <Label fx:id="ageLabel" text="Age: 24" style="-fx-font-size: 14px; -fx-text-fill: #555555;"/>
+                <Label fx:id="addressLabel" text="Address: 123 Green St, CDO, Philippines" style="-fx-font-size: 14px; -fx-text-fill: #555555;"/>
+                <Label fx:id="typeLabel" text="User Type: Admin" style="-fx-font-size: 14px; -fx-font-style: italic; -fx-text-fill: #777777;"/>
+            </VBox>
+
+            <!-- Change Picture Button -->
+            <HBox spacing="25" alignment="CENTER">
+                <Button text="Change Picture" onAction="#onChangePicture" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 12; -fx-padding: 8 20 8 20;"/>
+            </HBox>
+
+        </VBox>
+    </StackPane>
+
+</AnchorPane>

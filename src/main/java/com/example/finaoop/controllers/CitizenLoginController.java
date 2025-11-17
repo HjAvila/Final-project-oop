@@ -1,5 +1,9 @@
 package com.example.finaoop.controllers;
 
+// FIXED: Added missing imports
+import com.example.finaoop.database.DataStore;
+import com.example.finaoop.models.User;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +28,8 @@ public class CitizenLoginController {
             return;
         }
 
-        // if admin credentials, go to admin login check (separate admin page)
+        // 1. CHECK FOR ADMIN FIRST
         if ("admin".equals(email) && "1234".equals(pass)) {
-            // go to admin dashboard directly
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/admin_dashboard.fxml"));
             Scene scene = new Scene(loader.load(), 1000, 700);
             scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
@@ -35,14 +38,24 @@ public class CitizenLoginController {
             return;
         }
 
-        // else citizen login (very simple placeholder auth)
+        // 2. CHECK FOR CITIZEN IN DATABASE
+        User user = DataStore.findUser(email, pass);
+
+        if (user == null) {
+            messageLabel.setText("Invalid credentials. Try again.");
+            return;
+        }
+
+        // 3. LOG IN SUCCESSFUL
+        // Set this user as the currently logged-in user
+        DataStore.setCurrentUser(user);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
         Scene scene = new Scene(loader.load(), 1000, 700);
         scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
 
-        // pass username/email to HomeController
         HomeController hc = loader.getController();
-        hc.setUsername(email);
+        hc.setUsername(user.getFullName());
 
         Stage stage = (Stage) emailField.getScene().getWindow();
         stage.setScene(scene);
