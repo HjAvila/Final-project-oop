@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.SidebarController"
+            prefWidth="250" style="-fx-background-color: #ffffff;"
+            AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
+
+    <!-- Sidebar Container -->
+    <VBox spacing="20" alignment="TOP_LEFT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" style="-fx-padding:20;">
+
+        <!-- Brand/Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color:#1FA84B; -fx-padding:15; -fx-background-radius:10;">
+            <Label text="Waste Disposal Assistant"
+                   style="-fx-text-fill: white; -fx-font-size:16px; -fx-font-weight:bold;"/>
+        </HBox>
+
+        <!-- Navigation Buttons -->
+        <VBox spacing="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <Button text="Dashboard" onAction="#onDashboard" styleClass="sidebar-btn"/>
+            <Button text="Disposal Request" onAction="#onDisposalRequest" styleClass="sidebar-btn"/>
+            <Button text="Reports" onAction="#onReports" styleClass="sidebar-btn"/>
+            <Button text="Profile" onAction="#onProfile" styleClass="sidebar-btn"/>
+            <Button text="About" onAction="#onAbout" styleClass="sidebar-btn"/>
+            <Button text="Logout" onAction="#onLogout" styleClass="sidebar-btn"/>
+        </VBox>
+    </VBox>
+</AnchorPane>

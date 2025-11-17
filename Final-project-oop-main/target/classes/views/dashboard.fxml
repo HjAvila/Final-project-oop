@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.DashboardController"
+            prefWidth="1000" prefHeight="700"
+            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
+
+    <VBox spacing="25" alignment="TOP_LEFT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <VBox spacing="5">
+            <Label text="Dashboard Overview" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label text="Track city performance and disposal operations at a glance."
+                   style="-fx-text-fill: #555555; -fx-font-size: 14px;"/>
+        </VBox>
+
+        <HBox spacing="20">
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
+                  style="-fx-background-color: #c8facc; -fx-background-radius: 12;">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="TOTAL REPORTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label fx:id="numReports" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="All submitted" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
+                  style="-fx-background-color: #d9fcd9; -fx-background-radius: 12;">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="ACTIVE REQUESTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label fx:id="numActive" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="Pending" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
+                  style="-fx-background-color: #b7f5b7; -fx-background-radius: 12;">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="COMPLETED TASKS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
+                <Label fx:id="numCompleted" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label text="Finished" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+            </VBox>
+        </HBox>
+
+        <VBox spacing="15"
+              style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000022, 6, 0.1, 0, 3);"
+              VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <Label text="Latest Disposal Requests" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tableMain" prefHeight="300" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="colLocation" text="Location" prefWidth="250"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="120"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label text="Selected:"/>
+                <Label fx:id="lblSelected" text="None" style="-fx-text-fill: #777777;"/>
+            </HBox>
+        </VBox>
+
+    </VBox>
+</AnchorPane>
