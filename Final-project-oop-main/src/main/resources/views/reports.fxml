@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.finaoop.controllers.ReportsController"
+            stylesheets="@../styles/style.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #dff7e0, #f6fff1);">
+
+    <center>
+        <VBox spacing="20" padding="25">
+
+            <Label text="Reports"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
+
+            <HBox spacing="20">
+                <TableView fx:id="table" prefHeight="450" HBox.hgrow="ALWAYS"
+                           style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #b3dbb7; -fx-border-width: 1;">
+                    <columns>
+                        <TableColumn fx:id="colId" text="Request ID" prefWidth="120"/>
+                        <TableColumn fx:id="colLocation" text="Location" prefWidth="260"/>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="140"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="140"/>
+                    </columns>
+                </TableView>
+
+                <VBox spacing="12" prefWidth="300"
+                      style="-fx-background-color: #e8f8e7; -fx-padding: 18; -fx-background-radius: 16;">
+                    <Label text="Report Preview" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
+                    <ImageView fx:id="reportPhotoPreview" fitWidth="260" fitHeight="190" preserveRatio="true"
+                               style="-fx-border-color: #9ed1a5; -fx-border-width: 1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-background-color: white;"/>
+                    <Label fx:id="reportStatusLabel" text="Select a report" style="-fx-font-weight: bold; -fx-text-fill: #1d7a3a;"/>
+                    <Label fx:id="reportDetailsLabel" wrapText="true" style="-fx-text-fill: #3f5d45; -fx-font-size: 12px;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

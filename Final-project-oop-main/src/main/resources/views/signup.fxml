@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.finaoop.controllers.SignupController"
+           stylesheets="@../styles/style.css"
+           prefWidth="1000" prefHeight="700">
+
+    <VBox alignment="CENTER" spacing="20">
+        <Pane minHeight="80"/>
+
+        <VBox styleClass="center-card" spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="Create Account" styleClass="card-title"/>
+
+            <TextField fx:id="fullNameField" promptText="Full Name" styleClass="input"/>
+            <TextField fx:id="emailField" promptText="Email" styleClass="input"/>
+
+            <!-- NEW FIELDS ADDED -->
+            <TextField fx:id="phoneField" promptText="Phone Number (e.g., 09123456789)" styleClass="input"/>
+            <TextField fx:id="addressField" promptText="Address (e.g., Tagum City, Davao)" styleClass="input"/>
+
+            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input"/>
+            <PasswordField fx:id="confirmField" promptText="Confirm Password" styleClass="input"/>
+
+            <Label fx:id="msgLabel" styleClass="muted"/>
+
+            <HBox spacing="12" alignment="CENTER">
+                <Button text="Create" onAction="#onCreateAccount" styleClass="primary-btn"/>
+                <Button text="Back" onAction="#backToLogin" styleClass="secondary-btn"/>
+            </HBox>
+        </VBox>
+
+        <Pane minHeight="50"/>
+    </VBox>
+</StackPane>
