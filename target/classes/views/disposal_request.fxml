@@ -6,19 +6,15 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.finaoop.controllers.DisposalRequestController"
             stylesheets="@../styles/style.css"
-            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
+            style="-fx-background-color: linear-gradient(to bottom right, #dff7e0, #f6fff1);">
 
     <ScrollPane fitToWidth="true" fitToHeight="true">
         <VBox spacing="25" padding="30">
-
-            <!-- Title Section -->
             <VBox spacing="6">
-                <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
                 <Label text="Fill the form and submit. Upload is local selection only."
-                       style="-fx-text-fill: #555555; -fx-font-size: 13px;"/>
+                       style="-fx-text-fill: #3f5d45; -fx-font-size: 13px;"/>
             </VBox>
-
-            <!-- Form Grid -->
             <GridPane hgap="20" vgap="20">
                 <columnConstraints>
                     <ColumnConstraints percentWidth="35"/>
@@ -39,15 +35,11 @@
                           promptText="Provide context and any additional instructions."
                           styleClass="input"/>
             </GridPane>
-
-            <!-- Action Buttons -->
             <HBox spacing="15" alignment="CENTER_LEFT">
                 <Button text="Upload Photo" onAction="#uploadPhoto" styleClass="secondary-btn"/>
                 <Button text="Submit Request" onAction="#submitRequest" styleClass="primary-btn"/>
-                <Label fx:id="statusLabel" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;"/>
+                <Label fx:id="statusLabel" style="-fx-text-fill: #1d7a3a; -fx-font-weight: bold;"/>
             </HBox>
-
-            <!-- Latest Requests Table -->
             <TableView fx:id="latestRequestsTable" prefHeight="250">
                 <columns>
                     <TableColumn fx:id="locationCol" text="Location" prefWidth="200"/>

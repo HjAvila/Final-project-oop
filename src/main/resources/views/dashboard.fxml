@@ -2,11 +2,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.finaoop.controllers.DashboardController"
             prefWidth="1000" prefHeight="700"
-            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
+            style="-fx-background-color: linear-gradient(to bottom right, #dff7e0, #f6fff1);">
 
     <VBox spacing="25" alignment="TOP_LEFT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <padding>
@@ -16,63 +17,71 @@
         <VBox spacing="5">
             <Label text="Dashboard Overview" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
             <Label text="Track city performance and disposal operations at a glance."
-                   style="-fx-text-fill: #555555; -fx-font-size: 14px;"/>
+                   style="-fx-text-fill: #3f5d45; -fx-font-size: 14px;"/>
         </VBox>
 
         <HBox spacing="20">
             <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
-                  style="-fx-background-color: #c8facc; -fx-background-radius: 12;">
+                  style="-fx-background-color: linear-gradient(to bottom, #c3f0cf, #aee6bb); -fx-background-radius: 18;">
                 <padding>
                     <Insets top="15" right="15" bottom="15" left="15"/>
                 </padding>
-                <Label text="TOTAL REPORTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
-                <Label fx:id="numReports" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
-                <Label text="All submitted" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+                <Label text="TOTAL REPORTS" style="-fx-font-size: 13px; -fx-text-fill: #0f4a2c;"/>
+                <Label fx:id="numReports" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f8a42;"/>
+                <Label text="All submitted" style="-fx-text-fill: #1f8a42; -fx-font-size: 12px;"/>
             </VBox>
 
             <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
-                  style="-fx-background-color: #d9fcd9; -fx-background-radius: 12;">
+                  style="-fx-background-color: linear-gradient(to bottom, #bdf0c6, #a2e0b0); -fx-background-radius: 18;">
                 <padding>
                     <Insets top="15" right="15" bottom="15" left="15"/>
                 </padding>
-                <Label text="ACTIVE REQUESTS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
-                <Label fx:id="numActive" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
-                <Label text="Pending" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+                <Label text="ACTIVE REQUESTS" style="-fx-font-size: 13px; -fx-text-fill: #0f4a2c;"/>
+                <Label fx:id="numActive" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f8a42;"/>
+                <Label text="Pending" style="-fx-text-fill: #1f8a42; -fx-font-size: 12px;"/>
             </VBox>
 
             <VBox alignment="CENTER" prefWidth="220" prefHeight="110"
-                  style="-fx-background-color: #b7f5b7; -fx-background-radius: 12;">
+                  style="-fx-background-color: linear-gradient(to bottom, #b3e9be, #9dd9a7); -fx-background-radius: 18;">
                 <padding>
                     <Insets top="15" right="15" bottom="15" left="15"/>
                 </padding>
-                <Label text="COMPLETED TASKS" style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"/>
-                <Label fx:id="numCompleted" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
-                <Label text="Finished" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;"/>
+                <Label text="COMPLETED TASKS" style="-fx-font-size: 13px; -fx-text-fill: #0f4a2c;"/>
+                <Label fx:id="numCompleted" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f8a42;"/>
+                <Label text="Finished" style="-fx-text-fill: #1f8a42; -fx-font-size: 12px;"/>
             </VBox>
         </HBox>
 
         <VBox spacing="15"
-              style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000022, 6, 0.1, 0, 3);"
+              style="-fx-background-color: white; -fx-background-radius: 18; -fx-effect: dropshadow(gaussian, rgba(15,74,44,0.12), 9, 0.25, 0, 3);"
               VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
             </padding>
 
-            <Label text="Latest Disposal Requests" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label text="Latest Disposal Requests" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
 
-            <TableView fx:id="tableMain" prefHeight="300" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
-                    <TableColumn fx:id="colLocation" text="Location" prefWidth="250"/>
-                    <TableColumn fx:id="colType" text="Type" prefWidth="120"/>
-                    <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
-                    <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
-                </columns>
-            </TableView>
+            <HBox spacing="20" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableMain" prefHeight="300" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                        <TableColumn fx:id="colLocation" text="Location" prefWidth="250"/>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="120"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+                    </columns>
+                </TableView>
 
-            <HBox alignment="CENTER_RIGHT" spacing="10">
-                <Label text="Selected:"/>
-                <Label fx:id="lblSelected" text="None" style="-fx-text-fill: #777777;"/>
+                <VBox spacing="12" prefWidth="280" alignment="TOP_LEFT"
+                      style="-fx-background-color: #e8f8e7; -fx-padding: 18; -fx-background-radius: 16;">
+                    <Label text="Report Preview" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
+                    <ImageView fx:id="dashboardPhotoPreview" fitWidth="240" fitHeight="180" preserveRatio="true"
+                               style="-fx-border-color: #9ed1a5; -fx-border-width: 1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-background-color: white;"/>
+                    <Label fx:id="dashboardStatusLabel" text="Select a report"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d7a3a;"/>
+                    <Label fx:id="dashboardDetailsLabel" wrapText="true"
+                           style="-fx-text-fill: #3f5d45; -fx-font-size: 12px;"/>
+                </VBox>
             </HBox>
         </VBox>
 

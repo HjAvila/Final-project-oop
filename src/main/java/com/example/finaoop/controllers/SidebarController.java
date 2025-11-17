@@ -10,7 +10,6 @@ import java.io.IOException;
 public class SidebarController {
     @FXML
     protected void onDashboard(ActionEvent event) {
-        // stub: load dashboard content or switch center content
         System.out.println("Open Dashboard");
     }
 

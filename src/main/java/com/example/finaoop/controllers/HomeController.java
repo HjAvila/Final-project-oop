@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL; // Import java.net.URL
 
 public class HomeController {
 
@@ -26,8 +27,6 @@ public class HomeController {
 
     @FXML
     private void initialize() {
-        // !!! THIS IS THE FIX !!!
-        // Load the dashboard by default when the home page opens
         loadCenter("/views/dashboard.fxml");
         updateDashboardStats();
     }
@@ -38,32 +37,51 @@ public class HomeController {
         if (numCompleted != null) numCompleted.setText(String.valueOf(DataStore.completedTasks()));
     }
 
-    // This is the main navigation logic. It loads a page into the center.
+    /**
+     * [FIXED METHOD]
+     * This method now checks if the FXML file exists (is not null)
+     * before attempting to load it.
+     */
     private void loadCenter(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            // Get the resource URL
+            URL fxmlUrl = getClass().getResource(fxmlPath);
+
+            // **THE FIX**: Check if the file was found
+            if (fxmlUrl == null) {
+                System.err.println("Error: Cannot find FXML file at path: " + fxmlPath);
+                // Display an error message to the user in the UI
+                rootPane.setCenter(new Label("Error: Page not found (" + fxmlPath + ")"));
+                return; // Exit the method
+            }
+
+            // Continue loading since the file was found
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Node center = loader.load();
             rootPane.setCenter(center);
+
         } catch (IOException e) {
+            // This catch block will now handle errors inside the FXML file itself
+            System.err.println("Error loading FXML from: " + fxmlPath);
             e.printStackTrace();
+            // Display a different error for loading issues
+            rootPane.setCenter(new Label("Error: Could not load page. Check FXML file for errors."));
         }
     }
 
-    // --- These are the methods your FXML buttons MUST call ---
-
     @FXML private void goToDashboard(ActionEvent event) {
         loadCenter("/views/dashboard.fxml");
-        updateDashboardStats(); // Refresh stats when going to dashboard
+        updateDashboardStats();
     }
 
     @FXML private void goToDisposalRequest(ActionEvent event) {
         loadCenter("/views/disposal_request_center.fxml");
-        updateDashboardStats(); // Refresh stats in case a request was added
+        updateDashboardStats();
     }
 
     @FXML private void openReports(ActionEvent event) {
         loadCenter("/views/reports_center.fxml");
-        updateDashboardStats(); // Refresh stats
+        updateDashboardStats();
     }
 
     @FXML private void goToProfile(ActionEvent event) {
@@ -73,9 +91,17 @@ public class HomeController {
     @FXML private void onLogout(ActionEvent event) {
         try {
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/citizen_login.fxml"));
+            // Make sure this login FXML path is also correct
+            URL loginUrl = getClass().getResource("/views/citizen_login.fxml");
+            if (loginUrl == null) {
+                System.err.println("Error: Cannot find login FXML file.");
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader(loginUrl);
             Scene scene = new Scene(loader.load(), 900, 600);
             stage.setScene(scene);
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

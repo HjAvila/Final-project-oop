@@ -7,11 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class DashboardController {
 
-    // === FIX: Added all the missing @FXML tags ===
-    // These lines connect your Java code to your FXML design.
     @FXML private Label numReports;
     @FXML private Label numActive;
     @FXML private Label numCompleted;
@@ -21,34 +21,53 @@ public class DashboardController {
     @FXML private TableColumn<DisposalRequest, String> colType;
     @FXML private TableColumn<DisposalRequest, String> colStatus;
     @FXML private TableColumn<DisposalRequest, String> colDate;
-    @FXML private Label lblSelected;
-    // === END FIX ===
-
-
+    @FXML private Label dashboardDetailsLabel;
+    @FXML private Label dashboardStatusLabel;
+    @FXML private ImageView dashboardPhotoPreview;
     @FXML
     private void initialize() {
-        // 1. Populate the stat cards from the DataStore
         if (numReports != null) numReports.setText(String.valueOf(DataStore.totalReports()));
         if (numActive != null) numActive.setText(String.valueOf(DataStore.activeRequests()));
         if (numCompleted != null) numCompleted.setText(String.valueOf(DataStore.completedTasks()));
 
-        // 2. Set up the table columns to match DisposalRequest.java
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        // 3. Load all requests from the DataStore into the table
         tableMain.setItems(DataStore.getAllRequests());
 
-        // 4. (Optional) Show which item is selected
-        tableMain.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
-            if (newSel != null) {
-                lblSelected.setText(newSel.getId() + ": " + newSel.getLocation());
-            } else {
-                lblSelected.setText("None");
+        tableMain.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> showRequestDetails(newSel));
+        showRequestDetails(null);
+    }
+
+    private void showRequestDetails(DisposalRequest request) {
+        if (dashboardDetailsLabel == null || dashboardStatusLabel == null) {
+            return;
+        }
+
+        if (request == null) {
+            dashboardStatusLabel.setText("Select a report");
+            dashboardDetailsLabel.setText("Choose an item from the table to preview its location, waste type, and description.");
+            if (dashboardPhotoPreview != null) {
+                dashboardPhotoPreview.setImage(null);
             }
-        });
+            return;
+        }
+
+        dashboardStatusLabel.setText("Status: " + request.getStatus());
+        dashboardDetailsLabel.setText(
+                "ID: " + request.getId() + "\n"
+                        + "Location: " + request.getLocation() + "\n"
+                        + "Type: " + request.getType() + "\n"
+                        + "Reported by: " + request.getRequesterEmail() + "\n\n"
+                        + request.getDescription()
+        );
+
+        if (dashboardPhotoPreview != null) {
+            Image image = DataStore.loadImage(request.getImagePath());
+            dashboardPhotoPreview.setImage(image);
+        }
     }
 }

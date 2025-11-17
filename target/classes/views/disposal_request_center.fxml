@@ -7,7 +7,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.finaoop.controllers.DisposalRequestController"
             stylesheets="@../styles/style.css"
-            style="-fx-background-color: linear-gradient(to bottom right, #e8f5e9, #ffffff);">
+            style="-fx-background-color: linear-gradient(to bottom right, #dff7e0, #f6fff1);">
 
     <ScrollPane fitToWidth="true" fitToHeight="true">
         <VBox spacing="25">
@@ -16,9 +16,9 @@
             </padding>
 
             <VBox spacing="6">
-                <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Label text="Disposal Request Form" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f4a2c;"/>
                 <Label text="Fill the form and submit. Uploading a photo is optional."
-                       style="-fx-text-fill: #555555; -fx-font-size: 13px;"/>
+                       style="-fx-text-fill: #3f5d45; -fx-font-size: 13px;"/>
             </VBox>
 
             <GridPane hgap="20" vgap="20">
@@ -44,16 +44,16 @@
                 <Label text="Photo Preview:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
                 <ImageView fx:id="photoPreview" fitHeight="150" fitWidth="200" preserveRatio="true"
                            GridPane.rowIndex="3" GridPane.columnIndex="1"
-                           style="-fx-border-color: #dceadf; -fx-border-width: 1; -fx-border-radius: 8;"/>
+                           style="-fx-border-color: #9ed1a5; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-color: #edf9ed;"/>
             </GridPane>
 
             <HBox spacing="15" alignment="CENTER_LEFT">
                 <Button text="Upload Photo" onAction="#choosePhoto" styleClass="secondary-btn"/>
                 <Button text="Submit Request" onAction="#submitRequest" styleClass="primary-btn"/>
-                <Label fx:id="statusLabel" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;"/>
+                <Label fx:id="statusLabel" style="-fx-text-fill: #1d7a3a; -fx-font-weight: bold;"/>
             </HBox>
 
-            <Label text="My Latest Requests" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+            <Label text="My Latest Requests" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 10 0 0 0; -fx-text-fill: #0f4a2c;"/>
             <TableView fx:id="latestRequestsTable" prefHeight="300">
                 <columns>
                     <TableColumn fx:id="locationCol" text="Location" prefWidth="200"/>

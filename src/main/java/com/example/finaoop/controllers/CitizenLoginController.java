@@ -1,6 +1,5 @@
 package com.example.finaoop.controllers;
 
-// FIXED: Added missing imports
 import com.example.finaoop.database.DataStore;
 import com.example.finaoop.models.User;
 
@@ -28,17 +27,15 @@ public class CitizenLoginController {
             return;
         }
 
-        // 1. CHECK FOR ADMIN FIRST
         if ("admin".equals(email) && "1234".equals(pass)) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/admin_dashboard.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 700);
+            Scene scene = new Scene(loader.load(), 100, 70);
             scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(scene);
             return;
         }
 
-        // 2. CHECK FOR CITIZEN IN DATABASE
         User user = DataStore.findUser(email, pass);
 
         if (user == null) {
@@ -46,8 +43,6 @@ public class CitizenLoginController {
             return;
         }
 
-        // 3. LOG IN SUCCESSFUL
-        // Set this user as the currently logged-in user
         DataStore.setCurrentUser(user);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));

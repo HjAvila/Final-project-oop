@@ -11,7 +11,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.finaoop.controllers.HomeController"
             stylesheets="@../styles/style.css"
-            style="-fx-background-color: #fcfdfc;">
+            style="-fx-background-color: #e9f8e6;">
 
     <left>
         <VBox spacing="16" styleClass="sidebar" prefWidth="260">

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.finaoop.controllers.AdminDashboardController"
+            fx:controller="com.example.finaoop.controllers.AdminDasboardController"
             stylesheets="@../styles/style.css"
             prefWidth="1000" prefHeight="700">
 

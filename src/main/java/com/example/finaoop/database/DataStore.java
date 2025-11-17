@@ -4,6 +4,7 @@ import com.example.finaoop.models.DisposalRequest;
 import com.example.finaoop.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,19 +18,17 @@ public class DataStore {
 
     private static List<User> users = new ArrayList<>();
     private static List<DisposalRequest> requests = new ArrayList<>();
+    private static final ObservableList<DisposalRequest> observableRequests = FXCollections.observableArrayList();
 
-    private static User currentUser = null; // Track who is logged in
+    private static User currentUser = null;
 
-    // This block runs when the app starts, loading the databases
     static {
         loadData();
     }
 
-    // --- User Methods ---
-
     public static void addUser(User user) {
         users.add(user);
-        saveData(); // Save after adding
+        saveData();
     }
 
     public static boolean emailExists(String email) {
@@ -39,10 +38,6 @@ public class DataStore {
         return false;
     }
 
-    /**
-     * Finds a user by email and password.
-     * @return The found User object, or null if login is invalid.
-     */
     public static User findUser(String email, String password) {
         for (User u : users) {
             if (u.getEmail().equalsIgnoreCase(email) && u.getPassword().equals(password)) {
@@ -60,29 +55,30 @@ public class DataStore {
         return currentUser;
     }
 
+    public static void updateUserProfilePicture(String email, String imagePath) {
+        for (User user : users) {
+            if (user.getEmail().equalsIgnoreCase(email)) {
+                user.setProfilePicturePath(imagePath);
+                saveData();
+                return;
+            }
+        }
+    }
 
-    // --- Request Methods ---
 
     public static void addRequest(DisposalRequest request) {
-        requests.add(0, request); // Add to the front of the list
+        requests.add(0, request);
+        observableRequests.add(0, request);
         saveData();
     }
 
-    /**
-     * Gets all requests from all users.
-     * @return ObservableList of all requests.
-     */
     public static ObservableList<DisposalRequest> getAllRequests() {
-        return FXCollections.observableArrayList(requests);
+        return observableRequests;
     }
 
-    /**
-     * Gets only the requests for the currently logged-in user.
-     * @return ObservableList of requests filtered by the current user.
-     */
     public static ObservableList<DisposalRequest> getRequestsForCurrentUser() {
         if (currentUser == null) {
-            return FXCollections.observableArrayList(); // Return empty list if no one is logged in
+            return FXCollections.observableArrayList();
         }
         List<DisposalRequest> userRequests = requests.stream()
                 .filter(r -> r.getRequesterEmail().equalsIgnoreCase(currentUser.getEmail()))
@@ -90,8 +86,18 @@ public class DataStore {
         return FXCollections.observableArrayList(userRequests);
     }
 
+    public static void updateRequestStatus(String requestID, String newStatus) {
+        for (int i = 0; i < requests.size(); i++) {
+            DisposalRequest req = requests.get(i);
+            if (req.getId().equals(requestID)) {
+                req.setStatus(newStatus);
+                observableRequests.set(i, req);
+                saveData();
+                return;
+            }
+        }
+    }
 
-    // --- Statistics Methods ---
 
     public static int totalReports() {
         return requests.size();
@@ -110,37 +116,49 @@ public class DataStore {
     }
 
 
-    // --- Save/Load Data (Persistence) ---
-
     private static void saveData() {
-        // Save users
         try (ObjectOutputStream oosUsers = new ObjectOutputStream(new FileOutputStream(USERS_FILE))) {
-            oosUsers.writeObject(new ArrayList<>(users)); // Save a copy
+            oosUsers.writeObject(new ArrayList<>(users));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Save requests
         try (ObjectOutputStream oosRequests = new ObjectOutputStream(new FileOutputStream(REQUESTS_FILE))) {
-            oosRequests.writeObject(new ArrayList<>(requests)); // Save a copy
+            oosRequests.writeObject(new ArrayList<>(requests));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static void loadData() {
-        // Load users
         try (ObjectInputStream oisUsers = new ObjectInputStream(new FileInputStream(USERS_FILE))) {
             users = (List<User>) oisUsers.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            users = new ArrayList<>(); // File not found or empty, start new list
+            users = new ArrayList<>();
         }
 
-        // Load requests
         try (ObjectInputStream oisRequests = new ObjectInputStream(new FileInputStream(REQUESTS_FILE))) {
             requests = (List<DisposalRequest>) oisRequests.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            requests = new ArrayList<>(); // File not found or empty, start new list
+            requests = new ArrayList<>();
+        }
+
+        observableRequests.setAll(requests);
+    }
+
+    public static Image loadImage(String imagePath) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            return null;
+        }
+        try {
+            if (imagePath.startsWith("file:")) {
+                return new Image(imagePath);
+            } else {
+                return new Image(new File(imagePath).toURI().toString());
+            }
+        } catch (Exception e) {
+            System.err.println("Could not load image: " + imagePath);
+            return null;
         }
     }
 }

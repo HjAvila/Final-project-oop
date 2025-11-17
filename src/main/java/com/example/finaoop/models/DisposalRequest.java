@@ -4,21 +4,18 @@ import java.io.Serializable;
 
 public class DisposalRequest implements Serializable {
 
-    // Add serialVersionUID
     private static final long serialVersionUID = 2L;
 
     private String id;
-    private String requesterEmail; // who submitted
+    private String requesterEmail;
     private String location;
     private String type;
     private String description;
-    private String date; // ISO date string
-    private String status; // Pending, In Progress, Completed
+    private String date;
+    private String status;
 
-    // NEW FIELD FOR PHOTO
     private String imagePath;
 
-    // Update constructor
     public DisposalRequest(String id, String requesterEmail, String location, String type, String description, String date, String status, String imagePath) {
         this.id = id;
         this.requesterEmail = requesterEmail;
@@ -27,10 +24,9 @@ public class DisposalRequest implements Serializable {
         this.description = description;
         this.date = date;
         this.status = status;
-        this.imagePath = imagePath; // Set new field
+        this.imagePath = imagePath;
     }
 
-    // Getters for all fields
     public String getId() { return id; }
     public String getRequesterEmail() { return requesterEmail; }
     public String getLocation() { return location; }
@@ -38,7 +34,7 @@ public class DisposalRequest implements Serializable {
     public String getDescription() { return description; }
     public String getDate() { return date; }
     public String getStatus() { return status; }
-    public String getImagePath() { return imagePath; } // Getter for new field
+    public String getImagePath() { return imagePath; }
 
     public void setStatus(String status) { this.status = status; }
 }

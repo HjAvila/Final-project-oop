@@ -18,7 +18,6 @@ public class SignupController {
     @FXML private PasswordField confirmField;
     @FXML private Label msgLabel;
 
-    // NEW FXML FIELDS
     @FXML private TextField phoneField;
     @FXML private TextField addressField;
 
@@ -29,11 +28,9 @@ public class SignupController {
         String pass = passwordField.getText();
         String conf = confirmField.getText();
 
-        // NEW FIELDS
         String phone = phoneField.getText().trim();
         String address = addressField.getText().trim();
 
-        // Update validation
         if (full.isEmpty() || email.isEmpty() || pass.isEmpty() || conf.isEmpty() || phone.isEmpty() || address.isEmpty()) {
             msgLabel.setText("All fields are required.");
             return;
@@ -49,11 +46,9 @@ public class SignupController {
             return;
         }
 
-        // Update User constructor with new fields
         User newUser = new User(full, email, pass, address, phone);
         DataStore.addUser(newUser);
 
-        // Set the current user in DataStore
         DataStore.setCurrentUser(newUser);
 
         try {
